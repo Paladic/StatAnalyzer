@@ -22,7 +22,13 @@ namespace StatAnalyzer
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog.FileName;
+                string[] strings = File.ReadAllLines(filePath);
+                Samples.AllSamples = new List<List<double>>();
+                Samples.AllSamples = SampleCSVParser.TextToSamples(strings);
+
+                InterfaceHelper.SamplesToGrid(selectionsDataGrid, Samples.AllSamples);
             }
+            else MessageBox.Show("Произошла ошибка при открытии файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void keyboardInput_Click(object sender, EventArgs e)
@@ -31,7 +37,7 @@ namespace StatAnalyzer
             {
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
-                    var allSamples = inputForm.AllSamples;
+                    var allSamples = Samples.AllSamples;
                     InterfaceHelper.SamplesToGrid(selectionsDataGrid, allSamples);
                 }
             }

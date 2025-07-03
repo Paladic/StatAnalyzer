@@ -14,7 +14,6 @@ namespace StatAnalyzer
 {
     public partial class manualInputForm : Form
     {
-        public List<List<double>> AllSamples { get; private set; }
 
         public manualInputForm()
         {
@@ -39,9 +38,9 @@ namespace StatAnalyzer
                     return;
                 }
 
-                AllSamples = new List<List<double>>();
+                Samples.AllSamples = new List<List<double>>();
 
-                AllSamples = SampleCSVParser.TextToSamples(lines);
+                Samples.AllSamples = SampleCSVParser.TextToSamples(lines);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

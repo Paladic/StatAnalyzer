@@ -169,6 +169,8 @@
             selectionsDataGrid.AllowDrop = true;
             selectionsDataGrid.AllowUserToAddRows = false;
             selectionsDataGrid.AllowUserToDeleteRows = false;
+            selectionsDataGrid.AllowUserToResizeColumns = false;
+            selectionsDataGrid.AllowUserToResizeRows = false;
             selectionsDataGrid.BackgroundColor = SystemColors.ControlLight;
             selectionsDataGrid.BorderStyle = BorderStyle.Fixed3D;
             selectionsDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
