@@ -27,10 +27,11 @@ namespace StatAnalyzer
                 string[] lines = enterTextBox.Text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (!SampleCSVParser.isSamplesValid(lines)) return;
+                
+                var newSamples = SampleCSVParser.TextToSamples(lines);
+                Samples.ClearSamples();
+                Samples.AllSamples = newSamples;
 
-                Samples.AllSamples = new List<List<double>>();
-
-                Samples.AllSamples = SampleCSVParser.TextToSamples(lines);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

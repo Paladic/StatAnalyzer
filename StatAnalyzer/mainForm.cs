@@ -35,23 +35,21 @@ namespace StatAnalyzer
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                newSampleForm();
-                Samples.ClearSamples();
                 string filePath = openFileDialog.FileName;
                 string[] strings = File.ReadAllLines(filePath);
                 if (!SampleCSVParser.isSamplesValid(strings)) return;
-
-                Samples.AllSamples = new List<List<double>>();
-                Samples.AllSamples = SampleCSVParser.TextToSamples(strings);
+                var newSamples = SampleCSVParser.TextToSamples(strings);
+                Samples.ClearSamples();
+                Samples.AllSamples = newSamples;
+                newSampleForm();
 
                 InterfaceHelper.SamplesToGrid(selectionsDataGrid, Samples.AllSamples);
             }
-            else MessageBox.Show("Произошла ошибка при открытии файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //else MessageBox.Show("Произошла ошибка при открытии файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void keyboardInput_Click(object sender, EventArgs e)
         {
-            Samples.ClearSamples();
             using (manualInputForm inputForm = new manualInputForm())
             {
                 if (inputForm.ShowDialog() == DialogResult.OK)
