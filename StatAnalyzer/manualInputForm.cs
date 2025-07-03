@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Xsl;
+using System.Globalization;
 
 namespace StatAnalyzer
 {
@@ -44,7 +45,7 @@ namespace StatAnalyzer
                 {
                     var sample = line
                         .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(s => double.Parse(s.Trim()))
+                        .Select(s => double.Parse(s.Trim(), CultureInfo.InvariantCulture))
                         .ToList();
 
                     AllSamples.Add(sample);
