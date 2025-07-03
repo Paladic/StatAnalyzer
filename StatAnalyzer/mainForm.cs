@@ -32,26 +32,7 @@ namespace StatAnalyzer
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
                     var allSamples = inputForm.AllSamples;
-                    selectionsDataGrid.Rows.Clear();
-                    selectionsDataGrid.Columns.Clear();
-
-                    int maxCols = allSamples.Max(s => s.Count);
-
-                    for (int i = 0; i < maxCols; i++)
-                    {
-                        selectionsDataGrid.Columns.Add($"", $"");
-                    }
-
-                    for (int row = 0; row < allSamples.Count; row++)
-                    {
-                        var sample = allSamples[row];
-                        var rowValues = new string[maxCols];
-                        for (int col = 0; col < sample.Count; col++)
-                            rowValues[col] = sample[col].ToString();
-
-                        selectionsDataGrid.Rows.Add(rowValues);
-                        selectionsDataGrid.Rows[row].HeaderCell.Value = $"Выборка {row + 1}";
-                    }
+                    InterfaceHelper.SamplesToGrid(selectionsDataGrid, allSamples);
                 }
             }
         }
