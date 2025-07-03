@@ -21,6 +21,14 @@ namespace StatAnalyzer
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                isDependentCheckBox.Enabled = true;
+                isDependentCheckBox.Checked = false;
+                selectionsDataGrid.Enabled = true;
+                selectionsGroupBox.Enabled = true;
+                analyseButton.Enabled = true;
+                resultsGroupBox.Enabled = false;
+                graphicsButton.Enabled = false;
+
                 string filePath = openFileDialog.FileName;
                 string[] strings = File.ReadAllLines(filePath);
                 Samples.AllSamples = new List<List<double>>();
@@ -37,10 +45,24 @@ namespace StatAnalyzer
             {
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
+                    isDependentCheckBox.Enabled = true;
+                    isDependentCheckBox.Checked = false;
+                    selectionsDataGrid.Enabled = true;
+                    selectionsGroupBox.Enabled = true;
+                    analyseButton.Enabled = true;
+                    resultsGroupBox.Enabled = false;
+                    graphicsButton.Enabled = false;
+
                     var allSamples = Samples.AllSamples;
                     InterfaceHelper.SamplesToGrid(selectionsDataGrid, allSamples);
                 }
             }
+        }
+
+        private void analyseButton_Click(object sender, EventArgs e)
+        {
+            resultsGroupBox.Enabled = true;
+            graphicsButton.Enabled = true;
         }
     }
 }

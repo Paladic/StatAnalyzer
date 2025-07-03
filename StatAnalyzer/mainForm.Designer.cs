@@ -211,6 +211,7 @@
             analyseButton.TabIndex = 3;
             analyseButton.Text = "Анализировать";
             analyseButton.UseVisualStyleBackColor = true;
+            analyseButton.Click += this.analyseButton_Click;
             // 
             // resultsGroupBox
             // 
