@@ -7,9 +7,9 @@ namespace StatAnalyzer
             InitializeComponent();
         }
 
-        private void uploadingData_Enter(object sender, EventArgs e)
+        private void isDependentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            Samples.IsDependent = isDependentCheckBox.Checked;
         }
 
         private void fromFile_Click(object sender, EventArgs e)

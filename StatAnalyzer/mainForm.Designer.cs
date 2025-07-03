@@ -90,7 +90,6 @@
             uploadingData.TabIndex = 0;
             uploadingData.TabStop = false;
             uploadingData.Text = "Загрузка данных";
-            uploadingData.Enter += uploadingData_Enter;
             // 
             // uploadingLayout
             // 
@@ -197,6 +196,7 @@
             isDependentCheckBox.TabIndex = 2;
             isDependentCheckBox.Text = "Выборки зависимы";
             isDependentCheckBox.UseVisualStyleBackColor = true;
+            isDependentCheckBox.CheckedChanged += this.isDependentCheckBox_CheckedChanged;
             // 
             // analyseButton
             // 
@@ -211,7 +211,7 @@
             analyseButton.TabIndex = 3;
             analyseButton.Text = "Анализировать";
             analyseButton.UseVisualStyleBackColor = true;
-            analyseButton.Click += this.analyseButton_Click;
+            analyseButton.Click += analyseButton_Click;
             // 
             // resultsGroupBox
             // 
