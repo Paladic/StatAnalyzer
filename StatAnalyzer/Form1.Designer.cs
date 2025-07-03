@@ -120,6 +120,7 @@
             fromFile.TabIndex = 0;
             fromFile.Text = "Загрузить из файла";
             fromFile.UseVisualStyleBackColor = true;
+            fromFile.Click += fromFile_Click;
             // 
             // keyboardInput
             // 
