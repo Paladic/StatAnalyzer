@@ -50,7 +50,7 @@
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
@@ -60,29 +60,31 @@
             // manualTextBox
             // 
             manualTextBox.BorderStyle = BorderStyle.None;
+            manualTextBox.CausesValidation = false;
             manualTextBox.Dock = DockStyle.Fill;
+            manualTextBox.HideSelection = false;
             manualTextBox.Location = new Point(3, 3);
             manualTextBox.Multiline = true;
             manualTextBox.Name = "manualTextBox";
             manualTextBox.ReadOnly = true;
-            manualTextBox.Size = new Size(502, 49);
+            manualTextBox.Size = new Size(502, 59);
             manualTextBox.TabIndex = 1;
-            manualTextBox.Text = "Ввод десятичных дробей осуществляется через точку. \r\nЗначения разделяются запятой с пробелом.\r\nКаждая выборка на отдельной строке.";
+            manualTextBox.Text = "Ввод десятичных дробей осуществляется через точку. \r\nЗначения разделяются запятой с пробелом.\r\nКаждая выборка на отдельной строке.\r\nПоддерживаемое количество выборок – от 2 до 10.";
             // 
             // enterTextBox
             // 
             enterTextBox.Dock = DockStyle.Fill;
-            enterTextBox.Location = new Point(3, 111);
+            enterTextBox.Location = new Point(3, 121);
             enterTextBox.Multiline = true;
             enterTextBox.Name = "enterTextBox";
-            enterTextBox.Size = new Size(502, 118);
+            enterTextBox.Size = new Size(502, 108);
             enterTextBox.TabIndex = 2;
             // 
             // exampleTextBox
             // 
             exampleTextBox.BorderStyle = BorderStyle.None;
             exampleTextBox.Dock = DockStyle.Fill;
-            exampleTextBox.Location = new Point(3, 58);
+            exampleTextBox.Location = new Point(3, 68);
             exampleTextBox.Multiline = true;
             exampleTextBox.Name = "exampleTextBox";
             exampleTextBox.ReadOnly = true;
@@ -100,15 +102,18 @@
             enterButton.TabIndex = 4;
             enterButton.Text = "Подтвердить";
             enterButton.UseVisualStyleBackColor = true;
+            enterButton.Click += enterButton_Click;
             // 
             // manualInputForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CausesValidation = false;
             ClientSize = new Size(508, 263);
             Controls.Add(tableLayoutPanel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "manualInputForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Ввод вручную";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();

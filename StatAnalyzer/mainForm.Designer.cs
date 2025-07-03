@@ -134,7 +134,7 @@
             keyboardInput.TabIndex = 1;
             keyboardInput.Text = "Ввод вручную";
             keyboardInput.UseVisualStyleBackColor = true;
-            keyboardInput.Click += this.keyboardInput_Click;
+            keyboardInput.Click += keyboardInput_Click;
             // 
             // selectionsGroupBox
             // 
@@ -270,6 +270,7 @@
             Font = new Font("Segoe UI", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "mainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Подбор статистических методов для анализа выборок с различной структурой";
             tableLayout.ResumeLayout(false);
             tableLayout.PerformLayout();
