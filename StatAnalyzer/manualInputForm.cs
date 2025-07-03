@@ -28,13 +28,13 @@ namespace StatAnalyzer
 
                 if (lines.Length < 2)
                 {
-                    MessageBox.Show($"Количество выборок меньше, чем допустимое количество. Текущее — {lines.Length}, минимальное допустимое — 2.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show($"Количество выборок меньше, чем допустимое количество. Текущее — {lines.Length}, минимальное допустимое — 2.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (lines.Length > 10)
                 {
-                    MessageBox.Show($"Количество выборок превышает допустимое количество. Текущее — {lines.Length}, максимальное допустимое — 10.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show($"Количество выборок превышает допустимое количество. Текущее — {lines.Length}, максимальное допустимое — 10.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -55,7 +55,7 @@ namespace StatAnalyzer
             }
             catch (FormatException)
             {
-                MessageBox.Show("Ошибка разбора чисел. Используйте точки для написания десятичных дробей и запятую с пробелом пробелы как разделитель.");
+                MessageBox.Show("Ошибка разбора значений.\nВведите числовые значения.\nИспользуйте точки для написания десятичных дробей и запятую с пробелом как разделитель.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

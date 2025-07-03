@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(manualInputForm));
             tableLayoutPanel1 = new TableLayoutPanel();
-            manualTextBox = new TextBox();
             enterTextBox = new TextBox();
-            exampleTextBox = new TextBox();
             enterButton = new Button();
+            manualLabel = new Label();
+            exampleLabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -42,10 +42,10 @@
             tableLayoutPanel1.AutoScroll = true;
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(manualTextBox, 0, 0);
             tableLayoutPanel1.Controls.Add(enterTextBox, 0, 2);
-            tableLayoutPanel1.Controls.Add(exampleTextBox, 0, 1);
             tableLayoutPanel1.Controls.Add(enterButton, 0, 3);
+            tableLayoutPanel1.Controls.Add(manualLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(exampleLabel, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -57,40 +57,15 @@
             tableLayoutPanel1.Size = new Size(508, 263);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // manualTextBox
-            // 
-            manualTextBox.BorderStyle = BorderStyle.None;
-            manualTextBox.CausesValidation = false;
-            manualTextBox.Dock = DockStyle.Fill;
-            manualTextBox.HideSelection = false;
-            manualTextBox.Location = new Point(3, 3);
-            manualTextBox.Multiline = true;
-            manualTextBox.Name = "manualTextBox";
-            manualTextBox.ReadOnly = true;
-            manualTextBox.Size = new Size(502, 59);
-            manualTextBox.TabIndex = 1;
-            manualTextBox.Text = "Ввод десятичных дробей осуществляется через точку. \r\nЗначения разделяются запятой с пробелом.\r\nКаждая выборка на отдельной строке.\r\nПоддерживаемое количество выборок – от 2 до 10.";
-            // 
             // enterTextBox
             // 
             enterTextBox.Dock = DockStyle.Fill;
             enterTextBox.Location = new Point(3, 121);
             enterTextBox.Multiline = true;
             enterTextBox.Name = "enterTextBox";
+            enterTextBox.ScrollBars = ScrollBars.Both;
             enterTextBox.Size = new Size(502, 108);
             enterTextBox.TabIndex = 2;
-            // 
-            // exampleTextBox
-            // 
-            exampleTextBox.BorderStyle = BorderStyle.None;
-            exampleTextBox.Dock = DockStyle.Fill;
-            exampleTextBox.Location = new Point(3, 68);
-            exampleTextBox.Multiline = true;
-            exampleTextBox.Name = "exampleTextBox";
-            exampleTextBox.ReadOnly = true;
-            exampleTextBox.Size = new Size(502, 47);
-            exampleTextBox.TabIndex = 3;
-            exampleTextBox.Text = "Например:\r\n12.5, 56.4\r\n16, 89, 89.6";
             // 
             // enterButton
             // 
@@ -103,6 +78,26 @@
             enterButton.Text = "Подтвердить";
             enterButton.UseVisualStyleBackColor = true;
             enterButton.Click += enterButton_Click;
+            // 
+            // manualLabel
+            // 
+            manualLabel.AutoSize = true;
+            manualLabel.Dock = DockStyle.Fill;
+            manualLabel.Location = new Point(3, 0);
+            manualLabel.Name = "manualLabel";
+            manualLabel.Size = new Size(502, 65);
+            manualLabel.TabIndex = 5;
+            manualLabel.Text = "Ввод десятичных дробей осуществляется через точку. \r\nЗначения разделяются запятой с пробелом.\r\nКаждая выборка на отдельной строке.\r\nПоддерживаемое количество выборок – от 2 до 10.\r\n";
+            // 
+            // exampleLabel
+            // 
+            exampleLabel.AutoSize = true;
+            exampleLabel.Dock = DockStyle.Fill;
+            exampleLabel.Location = new Point(3, 65);
+            exampleLabel.Name = "exampleLabel";
+            exampleLabel.Size = new Size(502, 53);
+            exampleLabel.TabIndex = 6;
+            exampleLabel.Text = "Например:\r\n12.5, 56.4\r\n16, 89, 89.6";
             // 
             // manualInputForm
             // 
@@ -123,9 +118,9 @@
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private TextBox manualTextBox;
         private TextBox enterTextBox;
-        private TextBox exampleTextBox;
         private Button enterButton;
+        private Label manualLabel;
+        private Label exampleLabel;
     }
 }
