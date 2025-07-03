@@ -6,5 +6,10 @@ namespace StatAnalyzer
         {
             InitializeComponent();
         }
+
+        private void uploadingData_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
