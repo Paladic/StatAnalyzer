@@ -10,5 +10,11 @@ namespace StatAnalyzer
     {
         public static List<List<double>> AllSamples { get; set; } = new List<List<double>>();
         public static bool IsDependent = false;
+
+        public static void ClearSamples()
+        {
+            AllSamples.Clear();
+            IsDependent = false;
+        }
     }
 }

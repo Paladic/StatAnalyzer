@@ -7,6 +7,18 @@ namespace StatAnalyzer
             InitializeComponent();
         }
 
+        private void newSampleForm()
+        {
+            resultsTextBox.Clear();
+            isDependentCheckBox.Enabled = true;
+            isDependentCheckBox.Checked = false;
+            selectionsDataGrid.Enabled = true;
+            selectionsGroupBox.Enabled = true;
+            analyseButton.Enabled = true;
+            resultsGroupBox.Enabled = false;
+            graphicsButton.Enabled = false;
+        }
+
         private void isDependentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Samples.IsDependent = isDependentCheckBox.Checked;
@@ -21,14 +33,8 @@ namespace StatAnalyzer
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                isDependentCheckBox.Enabled = true;
-                isDependentCheckBox.Checked = false;
-                selectionsDataGrid.Enabled = true;
-                selectionsGroupBox.Enabled = true;
-                analyseButton.Enabled = true;
-                resultsGroupBox.Enabled = false;
-                graphicsButton.Enabled = false;
-
+                newSampleForm();
+                Samples.ClearSamples();
                 string filePath = openFileDialog.FileName;
                 string[] strings = File.ReadAllLines(filePath);
                 Samples.AllSamples = new List<List<double>>();
@@ -41,18 +47,12 @@ namespace StatAnalyzer
 
         private void keyboardInput_Click(object sender, EventArgs e)
         {
+            Samples.ClearSamples();
             using (manualInputForm inputForm = new manualInputForm())
             {
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
-                    isDependentCheckBox.Enabled = true;
-                    isDependentCheckBox.Checked = false;
-                    selectionsDataGrid.Enabled = true;
-                    selectionsGroupBox.Enabled = true;
-                    analyseButton.Enabled = true;
-                    resultsGroupBox.Enabled = false;
-                    graphicsButton.Enabled = false;
-
+                    newSampleForm();
                     var allSamples = Samples.AllSamples;
                     InterfaceHelper.SamplesToGrid(selectionsDataGrid, allSamples);
                 }
@@ -61,8 +61,20 @@ namespace StatAnalyzer
 
         private void analyseButton_Click(object sender, EventArgs e)
         {
+            resultsTextBox.Clear();
             resultsGroupBox.Enabled = true;
             graphicsButton.Enabled = true;
+            resultsTextBox.Enabled = true;
+
+            resultsTextBox.AppendText(Samples.IsDependent ? "Выборки зависимые." : "Выборки независимые.");
+            resultsTextBox.AppendText("\r\n");
+            bool sameSize = Samples.AllSamples.All(s => s.Count == Samples.AllSamples[0].Count);
+
+            resultsTextBox.AppendText(sameSize
+                ? $"Размер выборок одинаковый. Каждая выборка содержит {Samples.AllSamples[0].Count} элементов."
+                : "Выборки разного размера.");
+            resultsTextBox.AppendText("\r\n");
+
         }
     }
 }
