@@ -196,7 +196,7 @@
             isDependentCheckBox.TabIndex = 2;
             isDependentCheckBox.Text = "Выборки зависимы";
             isDependentCheckBox.UseVisualStyleBackColor = true;
-            isDependentCheckBox.CheckedChanged += this.isDependentCheckBox_CheckedChanged;
+            isDependentCheckBox.CheckedChanged += isDependentCheckBox_CheckedChanged;
             // 
             // analyseButton
             // 
@@ -265,6 +265,7 @@
             resultsTextBox.BorderStyle = BorderStyle.None;
             resultsTextBox.Dock = DockStyle.Fill;
             resultsTextBox.Enabled = false;
+            resultsTextBox.Font = new Font("Segoe UI", 9F);
             resultsTextBox.Location = new Point(3, 3);
             resultsTextBox.MaximumSize = new Size(1000, 10000);
             resultsTextBox.Multiline = true;

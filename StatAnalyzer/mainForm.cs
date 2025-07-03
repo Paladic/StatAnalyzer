@@ -74,7 +74,6 @@ namespace StatAnalyzer
                 ? $"Размер выборок одинаковый. Каждая выборка содержит {Samples.AllSamples[0].Count} элементов."
                 : "Выборки разного размера.");
             resultsTextBox.AppendText("\r\n");
-
         }
     }
 }
