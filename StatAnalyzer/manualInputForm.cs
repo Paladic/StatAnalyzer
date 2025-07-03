@@ -41,15 +41,7 @@ namespace StatAnalyzer
 
                 AllSamples = new List<List<double>>();
 
-                foreach (var line in lines)
-                {
-                    var sample = line
-                        .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(s => double.Parse(s.Trim(), CultureInfo.InvariantCulture))
-                        .ToList();
-
-                    AllSamples.Add(sample);
-                }
+                AllSamples = SampleCSVParser.TextToSamples(lines);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
