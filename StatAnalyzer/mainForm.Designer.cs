@@ -74,7 +74,7 @@
             tableLayout.RowStyles.Add(new RowStyle());
             tableLayout.RowStyles.Add(new RowStyle());
             tableLayout.RowStyles.Add(new RowStyle());
-            tableLayout.Size = new Size(591, 588);
+            tableLayout.Size = new Size(662, 593);
             tableLayout.TabIndex = 0;
             // 
             // uploadingData
@@ -86,7 +86,7 @@
             uploadingData.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
             uploadingData.Location = new Point(3, 3);
             uploadingData.Name = "uploadingData";
-            uploadingData.Size = new Size(585, 86);
+            uploadingData.Size = new Size(656, 86);
             uploadingData.TabIndex = 0;
             uploadingData.TabStop = false;
             uploadingData.Text = "Загрузка данных";
@@ -105,7 +105,7 @@
             uploadingLayout.RowCount = 2;
             uploadingLayout.RowStyles.Add(new RowStyle());
             uploadingLayout.RowStyles.Add(new RowStyle());
-            uploadingLayout.Size = new Size(579, 62);
+            uploadingLayout.Size = new Size(650, 62);
             uploadingLayout.TabIndex = 0;
             // 
             // fromFile
@@ -116,7 +116,7 @@
             fromFile.Font = new Font("Segoe UI", 9F);
             fromFile.Location = new Point(3, 3);
             fromFile.Name = "fromFile";
-            fromFile.Size = new Size(573, 25);
+            fromFile.Size = new Size(644, 25);
             fromFile.TabIndex = 0;
             fromFile.Text = "Загрузить из файла";
             fromFile.UseVisualStyleBackColor = true;
@@ -130,10 +130,11 @@
             keyboardInput.Font = new Font("Segoe UI", 9F);
             keyboardInput.Location = new Point(3, 34);
             keyboardInput.Name = "keyboardInput";
-            keyboardInput.Size = new Size(573, 25);
+            keyboardInput.Size = new Size(644, 25);
             keyboardInput.TabIndex = 1;
             keyboardInput.Text = "Ввод вручную";
             keyboardInput.UseVisualStyleBackColor = true;
+            keyboardInput.Click += this.keyboardInput_Click;
             // 
             // selectionsGroupBox
             // 
@@ -144,7 +145,7 @@
             selectionsGroupBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             selectionsGroupBox.Location = new Point(3, 95);
             selectionsGroupBox.Name = "selectionsGroupBox";
-            selectionsGroupBox.Size = new Size(585, 180);
+            selectionsGroupBox.Size = new Size(656, 180);
             selectionsGroupBox.TabIndex = 1;
             selectionsGroupBox.TabStop = false;
             selectionsGroupBox.Text = "Данные выборок";
@@ -160,7 +161,7 @@
             dataGridLayout.Name = "dataGridLayout";
             dataGridLayout.RowCount = 1;
             dataGridLayout.RowStyles.Add(new RowStyle());
-            dataGridLayout.Size = new Size(579, 156);
+            dataGridLayout.Size = new Size(650, 156);
             dataGridLayout.TabIndex = 0;
             // 
             // selectionsDataGrid
@@ -174,7 +175,7 @@
             selectionsDataGrid.Location = new Point(3, 3);
             selectionsDataGrid.Name = "selectionsDataGrid";
             selectionsDataGrid.ScrollBars = ScrollBars.Horizontal;
-            selectionsDataGrid.Size = new Size(573, 150);
+            selectionsDataGrid.Size = new Size(644, 150);
             selectionsDataGrid.TabIndex = 0;
             // 
             // isDependentCheckBox
@@ -184,7 +185,7 @@
             isDependentCheckBox.Location = new Point(20, 288);
             isDependentCheckBox.Margin = new Padding(20, 10, 20, 10);
             isDependentCheckBox.Name = "isDependentCheckBox";
-            isDependentCheckBox.Size = new Size(551, 19);
+            isDependentCheckBox.Size = new Size(622, 19);
             isDependentCheckBox.TabIndex = 2;
             isDependentCheckBox.Text = "Выборки зависимы";
             isDependentCheckBox.UseVisualStyleBackColor = true;
@@ -197,7 +198,7 @@
             analyseButton.MaximumSize = new Size(0, 25);
             analyseButton.Name = "analyseButton";
             analyseButton.RightToLeft = RightToLeft.Yes;
-            analyseButton.Size = new Size(585, 25);
+            analyseButton.Size = new Size(656, 25);
             analyseButton.TabIndex = 3;
             analyseButton.Text = "Анализировать";
             analyseButton.UseVisualStyleBackColor = true;
@@ -211,7 +212,7 @@
             resultsGroupBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             resultsGroupBox.Location = new Point(3, 351);
             resultsGroupBox.Name = "resultsGroupBox";
-            resultsGroupBox.Size = new Size(585, 234);
+            resultsGroupBox.Size = new Size(656, 239);
             resultsGroupBox.TabIndex = 4;
             resultsGroupBox.TabStop = false;
             resultsGroupBox.Text = "Результат";
@@ -230,7 +231,7 @@
             resultsLayout.RowCount = 2;
             resultsLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             resultsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
-            resultsLayout.Size = new Size(579, 210);
+            resultsLayout.Size = new Size(650, 215);
             resultsLayout.TabIndex = 1;
             // 
             // graphicsButton
@@ -239,10 +240,10 @@
             graphicsButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             graphicsButton.Dock = DockStyle.Fill;
             graphicsButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            graphicsButton.Location = new Point(3, 182);
+            graphicsButton.Location = new Point(3, 187);
             graphicsButton.MaximumSize = new Size(0, 25);
             graphicsButton.Name = "graphicsButton";
-            graphicsButton.Size = new Size(573, 25);
+            graphicsButton.Size = new Size(644, 25);
             graphicsButton.TabIndex = 0;
             graphicsButton.Text = "Показать график";
             graphicsButton.UseVisualStyleBackColor = true;
@@ -256,19 +257,19 @@
             resultsTextBox.Multiline = true;
             resultsTextBox.Name = "resultsTextBox";
             resultsTextBox.ReadOnly = true;
-            resultsTextBox.Size = new Size(573, 173);
+            resultsTextBox.Size = new Size(644, 178);
             resultsTextBox.TabIndex = 1;
             // 
-            // Form1
+            // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(591, 588);
+            ClientSize = new Size(662, 593);
             Controls.Add(tableLayout);
             Font = new Font("Segoe UI", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form1";
+            Name = "mainForm";
             Text = "Подбор статистических методов для анализа выборок с различной структурой";
             tableLayout.ResumeLayout(false);
             tableLayout.PerformLayout();

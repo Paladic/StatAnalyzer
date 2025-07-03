@@ -24,5 +24,15 @@ namespace StatAnalyzer
                 string filePath = openFileDialog.FileName;
             }
         }
+
+        private void keyboardInput_Click(object sender, EventArgs e)
+        {
+            using (manualInputForm inputForm = new manualInputForm())
+            {
+                if (inputForm.ShowDialog() == DialogResult.OK)
+                {
+                }
+            }
+        }
     }
 }
