@@ -167,14 +167,18 @@
             // selectionsDataGrid
             // 
             selectionsDataGrid.AllowDrop = true;
-            selectionsDataGrid.AllowUserToOrderColumns = true;
+            selectionsDataGrid.AllowUserToAddRows = false;
+            selectionsDataGrid.AllowUserToDeleteRows = false;
             selectionsDataGrid.BackgroundColor = SystemColors.ControlLight;
             selectionsDataGrid.BorderStyle = BorderStyle.Fixed3D;
             selectionsDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            selectionsDataGrid.ColumnHeadersVisible = false;
             selectionsDataGrid.Dock = DockStyle.Fill;
+            selectionsDataGrid.EditMode = DataGridViewEditMode.EditProgrammatically;
             selectionsDataGrid.Location = new Point(3, 3);
             selectionsDataGrid.Name = "selectionsDataGrid";
-            selectionsDataGrid.ScrollBars = ScrollBars.Horizontal;
+            selectionsDataGrid.ReadOnly = true;
+            selectionsDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             selectionsDataGrid.Size = new Size(644, 150);
             selectionsDataGrid.TabIndex = 0;
             // 
