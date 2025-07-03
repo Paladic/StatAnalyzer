@@ -28,6 +28,12 @@ namespace StatAnalyzer
 
         private void fromFile_Click(object sender, EventArgs e)
         {
+            if (Samples.AllSamples.Count != 0)
+            {
+                DialogResult res = MessageBox.Show("Текущие данные будут стерты и перезаписаны новыми.\nПродолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.No) return;
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.Filter = "CSV файлы (*.csv)|*.csv|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
@@ -50,6 +56,11 @@ namespace StatAnalyzer
 
         private void keyboardInput_Click(object sender, EventArgs e)
         {
+            if(Samples.AllSamples.Count != 0)
+            {
+                DialogResult res = MessageBox.Show("Текущие данные будут стерты и перезаписаны новыми.\nПродолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.No) return;
+            }
             using (manualInputForm inputForm = new manualInputForm())
             {
                 if (inputForm.ShowDialog() == DialogResult.OK)
