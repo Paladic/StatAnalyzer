@@ -48,7 +48,7 @@ namespace StatAnalyzer
             }
             catch (FormatException)
             {
-                MessageBox.Show("Ошибка разбора значений.\nВведите числовые значения.\nИспользуйте точки для написания десятичных дробей и запятую с пробелом как разделитель.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ошибка разбора значений.\nВведите числовые значения.\nИспользуйте точки для написания десятичных дробей и запятую как разделитель.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

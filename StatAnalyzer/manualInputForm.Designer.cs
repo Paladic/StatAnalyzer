@@ -87,7 +87,7 @@
             manualLabel.Name = "manualLabel";
             manualLabel.Size = new Size(502, 65);
             manualLabel.TabIndex = 5;
-            manualLabel.Text = "Ввод десятичных дробей осуществляется через точку. \r\nЗначения разделяются запятой с пробелом.\r\nКаждая выборка на отдельной строке.\r\nПоддерживаемое количество выборок – от 2 до 10.\r\n";
+            manualLabel.Text = "Ввод десятичных дробей осуществляется через точку. \r\nЗначения разделяются запятой.\r\nКаждая выборка на отдельной строке.\r\nПоддерживаемое количество выборок – от 2 до 10.\r\n";
             // 
             // exampleLabel
             // 
@@ -97,7 +97,7 @@
             exampleLabel.Name = "exampleLabel";
             exampleLabel.Size = new Size(502, 53);
             exampleLabel.TabIndex = 6;
-            exampleLabel.Text = "Например:\r\n12.5, 56.4\r\n16, 89, 89.6";
+            exampleLabel.Text = "Например:\r\n12.5,56.4\r\n16,89,89.6";
             // 
             // manualInputForm
             // 
