@@ -142,6 +142,7 @@
             selectionsGroupBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             selectionsGroupBox.Controls.Add(dataGridLayout);
             selectionsGroupBox.Dock = DockStyle.Fill;
+            selectionsGroupBox.Enabled = false;
             selectionsGroupBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             selectionsGroupBox.Location = new Point(3, 95);
             selectionsGroupBox.Name = "selectionsGroupBox";
@@ -188,6 +189,7 @@
             // 
             isDependentCheckBox.AutoSize = true;
             isDependentCheckBox.Dock = DockStyle.Fill;
+            isDependentCheckBox.Enabled = false;
             isDependentCheckBox.Location = new Point(20, 288);
             isDependentCheckBox.Margin = new Padding(20, 10, 20, 10);
             isDependentCheckBox.Name = "isDependentCheckBox";
@@ -200,6 +202,7 @@
             // 
             analyseButton.AutoSize = true;
             analyseButton.Dock = DockStyle.Fill;
+            analyseButton.Enabled = false;
             analyseButton.Location = new Point(3, 320);
             analyseButton.MaximumSize = new Size(0, 25);
             analyseButton.Name = "analyseButton";
@@ -215,6 +218,7 @@
             resultsGroupBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             resultsGroupBox.Controls.Add(resultsLayout);
             resultsGroupBox.Dock = DockStyle.Fill;
+            resultsGroupBox.Enabled = false;
             resultsGroupBox.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             resultsGroupBox.Location = new Point(3, 351);
             resultsGroupBox.Name = "resultsGroupBox";
@@ -245,6 +249,7 @@
             graphicsButton.AutoSize = true;
             graphicsButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             graphicsButton.Dock = DockStyle.Fill;
+            graphicsButton.Enabled = false;
             graphicsButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             graphicsButton.Location = new Point(3, 187);
             graphicsButton.MaximumSize = new Size(0, 25);
@@ -258,6 +263,7 @@
             // 
             resultsTextBox.BorderStyle = BorderStyle.None;
             resultsTextBox.Dock = DockStyle.Fill;
+            resultsTextBox.Enabled = false;
             resultsTextBox.Location = new Point(3, 3);
             resultsTextBox.MaximumSize = new Size(1000, 10000);
             resultsTextBox.Multiline = true;
