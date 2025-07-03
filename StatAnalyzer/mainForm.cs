@@ -1,3 +1,5 @@
+using static System.Windows.Forms.LinkLabel;
+
 namespace StatAnalyzer
 {
     public partial class mainForm : Form

@@ -17,7 +17,7 @@ namespace StatAnalyzer
             foreach (var line in lines)
             {
                 var sample = line
-                    .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => double.Parse(s.Trim(), CultureInfo.InvariantCulture))
                     .ToList();
 
