@@ -10,6 +10,22 @@ namespace StatAnalyzer
 {
     public static class SampleCSVParser
     {
+        public static bool isSamplesValid(string[] lines)
+        {
+            if (lines.Length < 2)
+            {
+                MessageBox.Show($"Количество выборок меньше, чем допустимое количество. Текущее — {lines.Length}, минимальное допустимое — 2.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (lines.Length > 10)
+            {
+                MessageBox.Show($"Количество выборок превышает допустимое количество. Текущее — {lines.Length}, максимальное допустимое — 10.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
         public static List<List<double>> TextToSamples(string[] lines)
         {
             List<List<double>> samples = new List<List<double>>();

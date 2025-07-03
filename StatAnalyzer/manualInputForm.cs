@@ -26,17 +26,7 @@ namespace StatAnalyzer
             {
                 string[] lines = enterTextBox.Text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (lines.Length < 2)
-                {
-                    MessageBox.Show($"Количество выборок меньше, чем допустимое количество. Текущее — {lines.Length}, минимальное допустимое — 2.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (lines.Length > 10)
-                {
-                    MessageBox.Show($"Количество выборок превышает допустимое количество. Текущее — {lines.Length}, максимальное допустимое — 10.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                if (!SampleCSVParser.isSamplesValid(lines)) return;
 
                 Samples.AllSamples = new List<List<double>>();
 

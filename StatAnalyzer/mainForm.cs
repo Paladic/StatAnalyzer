@@ -39,6 +39,8 @@ namespace StatAnalyzer
                 Samples.ClearSamples();
                 string filePath = openFileDialog.FileName;
                 string[] strings = File.ReadAllLines(filePath);
+                if (!SampleCSVParser.isSamplesValid(strings)) return;
+
                 Samples.AllSamples = new List<List<double>>();
                 Samples.AllSamples = SampleCSVParser.TextToSamples(strings);
 
