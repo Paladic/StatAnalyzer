@@ -11,8 +11,18 @@ namespace StatAnalyzer
 
         private void newSampleForm()
         {
+            Samples.IsSameSize = Samples.AllSamples.All(s => s.Count == Samples.AllSamples[0].Count);
+            if (Samples.IsSameSize)
+            {
+                isDependentCheckBox.Enabled = true;
+                dependentWarningLabel.Visible = false;
+            }
+            else
+            {
+                isDependentCheckBox.Enabled = false;
+                dependentWarningLabel.Visible = true;
+            }
             resultsTextBox.Clear();
-            isDependentCheckBox.Enabled = true;
             isDependentCheckBox.Checked = false;
             selectionsDataGrid.Enabled = true;
             selectionsGroupBox.Enabled = true;

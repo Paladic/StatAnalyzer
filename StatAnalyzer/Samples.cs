@@ -18,6 +18,7 @@ namespace StatAnalyzer
             AllSamples.Clear();
             IsDependent = false;
             IsGaussian = false;
+            IsSameSize = false;
         }
     }
 }
