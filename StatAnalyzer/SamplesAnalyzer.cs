@@ -46,6 +46,7 @@ namespace StatAnalyzer
             double levpVal = -1;
             Samples.IsEqualVariance = LeveneTestAccord(out levpVal);
             Samples.LevenePVal = levpVal;
+            Samples.TestPVal = CalculatePValue();
         }
         public static bool AnalyzeSamplesDistribution()
         {

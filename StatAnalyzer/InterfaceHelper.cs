@@ -24,6 +24,7 @@ namespace StatAnalyzer
                 ["diff"] = "Размеры выборок сильно различаются.",
                 ["equalVar"] = $"Дисперсии выборок статистически равны согласно тесту Левена ({Samples.LevenePVal} > 0.05).",
                 ["notEqualVar"] = $"Дисперсии выборок различаются согласно тесту Левена ({Samples.LevenePVal} ≤ 0.05).",
+                ["result"] = $"Результат проведенного теста: p = {Samples.TestPVal}",
             };
 
             var sb = new StringBuilder();
@@ -57,6 +58,10 @@ namespace StatAnalyzer
             sb.AppendLine("Рекомендованный тест:");
             sb.AppendLine(FormatTestName(Samples.RecommendedTest));
 
+            sb.AppendLine();
+            sb.AppendLine(labels["result"]);
+            sb.AppendLine(InterpretPValue(Samples.TestPVal));
+
             return sb.ToString();
         }
 
@@ -76,6 +81,18 @@ namespace StatAnalyzer
                 StatisticalTest.Friedman => "Критерий Фридмана",
                 _ => "Неизвестный тест"
             };
+        }
+
+        public static string InterpretPValue(double p)
+        {
+            if (p < 0.01)
+                return "p < 0.01: различия статистически значимы с высокой уверенностью.";
+            else if (p < 0.05)
+                return "p < 0.05: различия статистически значимы.";
+            else if (p < 0.1)
+                return "p < 0.1: различия слабо значимы (на границе значимости).";
+            else
+                return "p ≥ 0.1: различия статистически незначимы.";
         }
 
         public static void SamplesToGrid(DataGridView grid, List<List<double>> samples)
