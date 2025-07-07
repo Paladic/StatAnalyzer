@@ -88,15 +88,8 @@ namespace StatAnalyzer
             resultsGroupBox.Enabled = true;
             graphicsButton.Enabled = true;
             resultsTextBox.Enabled = true;
-
-            resultsTextBox.AppendText(Samples.IsDependent ? "Выборки зависимые." : "Выборки независимые.");
-            resultsTextBox.AppendText("\r\n");
-            bool sameSize = Samples.AllSamples.All(s => s.Count == Samples.AllSamples[0].Count);
-
-            resultsTextBox.AppendText(sameSize
-                ? $"Размер выборок одинаковый. Каждая выборка содержит {Samples.AllSamples[0].Count} элементов."
-                : "Выборки разного размера.");
-            resultsTextBox.AppendText("\r\n");
+            SamplesAnalyzer.AnalyzeSamples();
+            resultsTextBox.AppendText(InterfaceHelper.BuildAnalysisSummary());
         }
     }
 }

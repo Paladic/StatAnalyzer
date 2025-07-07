@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace StatAnalyzer
 {
-    public static class Samples
+    public class Samples
     {
         public static List<List<double>> AllSamples { get; set; } = new List<List<double>>();
         public static bool IsDependent = false;
+        public static bool IsGaussian = false;
+        public static bool IsSameSize = false;
 
         public static void ClearSamples()
         {
             AllSamples.Clear();
             IsDependent = false;
+            IsGaussian = false;
         }
     }
 }
