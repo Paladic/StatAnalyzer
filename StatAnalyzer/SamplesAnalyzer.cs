@@ -9,6 +9,24 @@ namespace StatAnalyzer
 {
     public class SamplesAnalyzer
     {
+        public enum SamplesSize
+        {
+            SmallSamples,           // < 30
+            LargeSamples,           // >= 30
+            DifferentSamples,       // сильно различаются по длине
+            None
+        }
+
+        public enum StatisticalTest
+        {
+            None,
+            PairedTTest,             // Парный t-тест
+            Wilcoxon,                // Тест Вилкоксона
+            StudentTTest,            // Классический t-тест Стьюдента
+            WelchTTest,              // t-тест Уэлча
+            MannWhitney              // U-критерий Манна–Уитни
+        }
+
         public static void AnalyzeSamples()
         {
             List<List<double>> allSamples = Samples.AllSamples;
@@ -16,6 +34,8 @@ namespace StatAnalyzer
             Samples.IsSameSize = allSamples.All(s => s.Count == allSamples[0].Count);
             if(Samples.IsSameSize) Samples.IsGaussian = AnalyzeSamplesDistribution();
 
+            Samples.SampleSize = AnalyzeSize();
+            Samples.RecommendedTest = GetRecommendedTest();
         }
         public static bool AnalyzeSamplesDistribution()
         {
@@ -32,12 +52,42 @@ namespace StatAnalyzer
             }
             return allNormal;
         }
+        public static SamplesSize AnalyzeSize()
+        {
+            int minSize = Samples.AllSamples.Min(s => s.Count);
+            int maxSize = Samples.AllSamples.Max(s => s.Count);
+
+            if (maxSize < 30 && minSize < 30) return SamplesSize.SmallSamples;
+            else if (maxSize > 30 && minSize > 30) return SamplesSize.LargeSamples;
+            else return SamplesSize.DifferentSamples;
+        }
 
         public static bool IsNormallyDistributed(List<double> sample)
         {
             var test = new ShapiroWilkTest(sample.ToArray());
             double pValue = test.PValue;
             return pValue > 0.05;
+        }
+        public static StatisticalTest GetRecommendedTest()
+        {
+            if (Samples.IsDependent) {
+                if (Samples.IsGaussian)
+                    return StatisticalTest.PairedTTest;
+                else
+                    return StatisticalTest.Wilcoxon;
+            }
+            else {
+                if (Samples.IsGaussian) {
+                    if(Samples.SampleSize == SamplesSize.SmallSamples)
+                        return StatisticalTest.MannWhitney;
+                    else if ((Samples.SampleSize == SamplesSize.DifferentSamples) || !Samples.IsEqualVariance)
+                        return StatisticalTest.WelchTTest;
+                    else
+                        return StatisticalTest.StudentTTest;
+                }
+                else
+                    return StatisticalTest.MannWhitney;
+            }
         }
     }
 }
