@@ -9,16 +9,6 @@ namespace StatAnalyzer
 {
     public static class InterfaceHelper
     {
-        public static Dictionary<string, string> labels = new Dictionary<string, string>
-        {
-            ["dependent"] = "Выборки зависимые.",
-            ["independent"] = "Выборки независимые.",
-            ["sameSize"] = $"Размер выборок одинаковый. Каждая выборка содержит {Samples.AllSamples[0].Count} элементов.",
-            ["diffSize"] = "Выборки разного размера.",
-            ["gausDistr"] = "Все выборки имеют нормальное распределение согласно тесту Шапиро–Уилка.",
-            ["noDistr"] = "Нормальность распределения не подтверждена для всех выборок согласно тесту Шапиро–Уилка."
-        };
-
         public static string BuildAnalysisSummary()
         {
             var labels = new Dictionary<string, string>
@@ -32,6 +22,8 @@ namespace StatAnalyzer
                 ["small"] = "Размер выборок — малый (менее 30 элементов в каждой выборке).",
                 ["large"] = "Размер выборок — большой (более 30 элементов в каждой выборке).",
                 ["diff"] = "Размеры выборок сильно различаются.",
+                ["equalVar"] = $"Дисперсии выборок статистически равны согласно тесту Левена ({Samples.LevenePVal} > 0.05).",
+                ["notEqualVar"] = $"Дисперсии выборок различаются согласно тесту Левена ({Samples.LevenePVal} ≤ 0.05).",
             };
 
             var sb = new StringBuilder();
@@ -60,6 +52,7 @@ namespace StatAnalyzer
                     break;
             }
 
+            sb.AppendLine(Samples.IsEqualVariance ? labels["equalVar"] : labels["notEqualVar"]);
 
             sb.AppendLine("Рекомендованный тест:");
             sb.AppendLine(FormatTestName(Samples.RecommendedTest));

@@ -17,6 +17,8 @@ namespace StatAnalyzer
         public static SamplesAnalyzer.SamplesSize SampleSize = SamplesAnalyzer.SamplesSize.None;
         public static SamplesAnalyzer.StatisticalTest RecommendedTest = SamplesAnalyzer.StatisticalTest.None;
 
+        public static double LevenePVal = -1;
+        public static double TestPVal = -1;
 
         public static void ClearSamples()
         {
@@ -27,6 +29,9 @@ namespace StatAnalyzer
             IsEqualVariance = false;
             SampleSize = SamplesAnalyzer.SamplesSize.None;
             RecommendedTest = SamplesAnalyzer.StatisticalTest.None;
+
+            LevenePVal = -1;
+            TestPVal = -1;
         }
     }
 }

@@ -36,6 +36,10 @@ namespace StatAnalyzer
 
             Samples.SampleSize = AnalyzeSize();
             Samples.RecommendedTest = GetRecommendedTest();
+
+            double levpVal = -1;
+            Samples.IsEqualVariance = LeveneTestAccord(out levpVal);
+            Samples.LevenePVal = levpVal;
         }
         public static bool AnalyzeSamplesDistribution()
         {
@@ -68,6 +72,17 @@ namespace StatAnalyzer
             double pValue = test.PValue;
             return pValue > 0.05;
         }
+
+        public static bool LeveneTestAccord(out double pValue)
+        {
+            double[][] arrays = Samples.AllSamples.Select(s => s.ToArray()).ToArray();
+
+            var test = new LeveneTest(arrays);
+            pValue = test.PValue;
+
+            return pValue > 0.05;
+        }
+
         public static StatisticalTest GetRecommendedTest()
         {
             if (Samples.IsDependent) {
