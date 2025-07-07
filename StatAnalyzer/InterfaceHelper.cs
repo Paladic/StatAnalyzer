@@ -69,6 +69,10 @@ namespace StatAnalyzer
                 StatisticalTest.StudentTTest => "Классический t-тест Стьюдента",
                 StatisticalTest.WelchTTest => "t-тест Уэлча",
                 StatisticalTest.MannWhitney => "U-критерий Манна–Уитни",
+                StatisticalTest.Anova => "Однофакторный дисперсионный анализ (One-way ANOVA)",
+                StatisticalTest.RepeatedMeasuresAnova => "Дисперсионный анализ для повторных наблюдений (Repeated Measures ANOVA)",
+                StatisticalTest.KruskalWallis => "Критерий Краскела–Уоллиса",
+                StatisticalTest.Friedman => "Критерий Фридмана",
                 _ => "Неизвестный тест"
             };
         }

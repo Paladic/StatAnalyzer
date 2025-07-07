@@ -19,13 +19,14 @@ namespace StatAnalyzer
 
         public enum StatisticalTest
         {
+            // для двух выборок
             None,
             PairedTTest,             // Парный t-тест
             Wilcoxon,                // Тест Вилкоксона
             StudentTTest,            // Классический t-тест Стьюдента
             WelchTTest,              // t-тест Уэлча
             MannWhitney,             // U-критерий Манна–Уитни
-
+            // для трех и более
             Anova,                  // Однофакторный дисперсионный анализ (One-way ANOVA)
             RepeatedMeasuresAnova,  // ANOVA для повторных измерений
             KruskalWallis,          // Критерий Краскела–Уоллиса
