@@ -7,7 +7,7 @@ using Accord.Statistics.Testing;
 
 namespace StatAnalyzer
 {
-    public class SamplesAnalyzer
+    public static class SamplesAnalyzer
     {
         public enum SamplesSize
         {
@@ -144,5 +144,32 @@ namespace StatAnalyzer
             }
         }
 
+        public static double CalculatePValue()
+        {
+            var samples = Samples.AllSamples;
+            switch (Samples.RecommendedTest)
+            {
+                case StatisticalTest.PairedTTest:
+                    return StatisticalTestsCalculator.CalPairedTTest(samples);
+                case StatisticalTest.Wilcoxon:
+                    return StatisticalTestsCalculator.CalWilcoxonTest(samples);
+                case StatisticalTest.StudentTTest:
+                    return StatisticalTestsCalculator.CalStudentTTest(samples);
+                case StatisticalTest.WelchTTest:
+                    return StatisticalTestsCalculator.CalWelchTTest(samples);
+                case StatisticalTest.MannWhitney:
+                    return StatisticalTestsCalculator.CalMannWhitneyTest(samples);
+                case StatisticalTest.Anova:
+                    return StatisticalTestsCalculator.CalOneWayAnova(samples);
+                case StatisticalTest.RepeatedMeasuresAnova:
+                    return StatisticalTestsCalculator.CalRepeatedMeasuresAnova(samples);
+                case StatisticalTest.KruskalWallis:
+                    return StatisticalTestsCalculator.CalKruskalWallisTest(samples);
+                case StatisticalTest.Friedman:
+                    return StatisticalTestsCalculator.CalFriedmanTest(samples);
+                default:
+                    throw new NotImplementedException();
+            }
+        }
     }
 }
