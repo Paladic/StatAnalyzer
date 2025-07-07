@@ -24,7 +24,12 @@ namespace StatAnalyzer
             Wilcoxon,                // Тест Вилкоксона
             StudentTTest,            // Классический t-тест Стьюдента
             WelchTTest,              // t-тест Уэлча
-            MannWhitney              // U-критерий Манна–Уитни
+            MannWhitney,             // U-критерий Манна–Уитни
+
+            Anova,                  // Однофакторный дисперсионный анализ (One-way ANOVA)
+            RepeatedMeasuresAnova,  // ANOVA для повторных измерений
+            KruskalWallis,          // Критерий Краскела–Уоллиса
+            Friedman                // Критерий Фридмана
         }
 
         public static void AnalyzeSamples()
@@ -85,15 +90,30 @@ namespace StatAnalyzer
 
         public static StatisticalTest GetRecommendedTest()
         {
-            if (Samples.IsDependent) {
+            if (Samples.AllSamples.Count == 2) {
+                return GetRecommendedTestForTwoSamples();
+            }
+            else if(Samples.AllSamples.Count > 2)
+            {
+                return GetRecommendedTestForMultipleSamples();
+            }
+            else return StatisticalTest.None;
+        }
+
+        public static StatisticalTest GetRecommendedTestForTwoSamples()
+        {
+            if (Samples.IsDependent)
+            {
                 if (Samples.IsGaussian)
                     return StatisticalTest.PairedTTest;
                 else
                     return StatisticalTest.Wilcoxon;
             }
-            else {
-                if (Samples.IsGaussian) {
-                    if(Samples.SampleSize == SamplesSize.SmallSamples)
+            else
+            {
+                if (Samples.IsGaussian)
+                {
+                    if (Samples.SampleSize == SamplesSize.SmallSamples)
                         return StatisticalTest.MannWhitney;
                     else if ((Samples.SampleSize == SamplesSize.DifferentSamples) || !Samples.IsEqualVariance)
                         return StatisticalTest.WelchTTest;
@@ -104,5 +124,24 @@ namespace StatAnalyzer
                     return StatisticalTest.MannWhitney;
             }
         }
+
+        public static StatisticalTest GetRecommendedTestForMultipleSamples()
+        {
+            if (Samples.IsDependent)
+            {
+                if (Samples.IsGaussian)
+                    return StatisticalTest.RepeatedMeasuresAnova;
+                else
+                    return StatisticalTest.Friedman;
+            }
+            else
+            {
+                if (Samples.IsGaussian && Samples.IsEqualVariance)
+                    return StatisticalTest.Anova;
+                else
+                    return StatisticalTest.KruskalWallis;
+            }
+        }
+
     }
 }
