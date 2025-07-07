@@ -66,32 +66,6 @@ namespace StatAnalyzer
             var anova = new OneWayAnova(groups);
             return anova.FTest.PValue;
         }
-        public static double CalRepeatedMeasuresAnova(List<List<double>> samples)
-        {
-            int subjects = samples.Count;
-            if (subjects < 2)
-                throw new ArgumentException("Должно быть как минимум два субъекта.");
-
-            int conditions = samples[0].Count;
-            if (conditions < 2)
-                throw new ArgumentException("Должно быть как минимум два условия.");
-
-            if (!samples.All(s => s.Count == conditions))
-                throw new ArgumentException("Все субъекты должны иметь одинаковое число условий.");
-
-            // [conditions, subjects, blocks=1]
-            double[,,] data = new double[subjects, conditions, 1];
-
-            for (int subj = 0; subj < subjects; subj++)
-                for (int cond = 0; cond < conditions; cond++)
-                    data[subj, cond, 0] = samples[subj][cond];
-
-            // Fixed — для Repeated Measures ANOVA
-            var anova = new TwoWayAnova(data, TwoWayAnovaModel.Mixed);
-
-            // FactorA — условия (внутригрупповой фактор)
-            return anova.Sources.FactorA.Significance.PValue;
-        }
 
         public static double CalKruskalWallisTest(List<List<double>> samples)
         {

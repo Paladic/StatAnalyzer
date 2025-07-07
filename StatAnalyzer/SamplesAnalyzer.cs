@@ -28,7 +28,6 @@ namespace StatAnalyzer
             MannWhitney,             // U-критерий Манна–Уитни
             // для трех и более
             Anova,                  // Однофакторный дисперсионный анализ (One-way ANOVA)
-            RepeatedMeasuresAnova,  // ANOVA для повторных измерений
             KruskalWallis,          // Критерий Краскела–Уоллиса
             Friedman                // Критерий Фридмана
         }
@@ -131,10 +130,7 @@ namespace StatAnalyzer
         {
             if (Samples.IsDependent)
             {
-                if (Samples.IsGaussian)
-                    return StatisticalTest.RepeatedMeasuresAnova;
-                else
-                    return StatisticalTest.Friedman;
+                return StatisticalTest.Friedman;
             }
             else
             {
@@ -162,8 +158,6 @@ namespace StatAnalyzer
                     return StatisticalTestsCalculator.CalMannWhitneyTest(samples);
                 case StatisticalTest.Anova:
                     return StatisticalTestsCalculator.CalOneWayAnova(samples);
-                case StatisticalTest.RepeatedMeasuresAnova:
-                    return StatisticalTestsCalculator.CalRepeatedMeasuresAnova(samples);
                 case StatisticalTest.KruskalWallis:
                     return StatisticalTestsCalculator.CalKruskalWallisTest(samples);
                 case StatisticalTest.Friedman:
