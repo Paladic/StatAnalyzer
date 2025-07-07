@@ -43,6 +43,11 @@ namespace StatAnalyzer
                 {
                     throw new InvalidOperationException($"Выборка {i + 1} превышает допустимое количетсво элементов. Текущее — {sample.Count}, максимальное допустимое — 100.");
                 }
+                else if (sample.Count < 4)
+                {
+                    throw new InvalidOperationException($"Выборка {i + 1} содержит меньше элементов, чем допустимо. Текущее — {sample.Count}, минимальное допустимое — 4.");
+                }
+
 
                 samples.Add(sample);
             }

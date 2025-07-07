@@ -50,7 +50,7 @@
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
@@ -60,11 +60,11 @@
             // enterTextBox
             // 
             enterTextBox.Dock = DockStyle.Fill;
-            enterTextBox.Location = new Point(3, 121);
+            enterTextBox.Location = new Point(3, 136);
             enterTextBox.Multiline = true;
             enterTextBox.Name = "enterTextBox";
             enterTextBox.ScrollBars = ScrollBars.Both;
-            enterTextBox.Size = new Size(502, 108);
+            enterTextBox.Size = new Size(502, 93);
             enterTextBox.TabIndex = 2;
             // 
             // enterButton
@@ -85,19 +85,19 @@
             manualLabel.Dock = DockStyle.Fill;
             manualLabel.Location = new Point(3, 0);
             manualLabel.Name = "manualLabel";
-            manualLabel.Size = new Size(502, 65);
+            manualLabel.Size = new Size(502, 80);
             manualLabel.TabIndex = 5;
-            manualLabel.Text = "Ввод десятичных дробей осуществляется через точку. \r\nЗначения разделяются точкой с запятой.\r\nКаждая выборка на отдельной строке.\r\nПоддерживаемое количество выборок – от 2 до 10.\r\n";
+            manualLabel.Text = resources.GetString("manualLabel.Text");
             // 
             // exampleLabel
             // 
             exampleLabel.AutoSize = true;
             exampleLabel.Dock = DockStyle.Fill;
-            exampleLabel.Location = new Point(3, 65);
+            exampleLabel.Location = new Point(3, 80);
             exampleLabel.Name = "exampleLabel";
             exampleLabel.Size = new Size(502, 53);
             exampleLabel.TabIndex = 6;
-            exampleLabel.Text = "Например:\r\n12.5;56.4\r\n16;89;89.6";
+            exampleLabel.Text = "Например:\r\n12.5;56.4;6;2\r\n16;89;89.6;8;4;3";
             // 
             // manualInputForm
             // 
