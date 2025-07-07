@@ -30,15 +30,23 @@ namespace StatAnalyzer
         {
             List<List<double>> samples = new List<List<double>>();
 
-            foreach (var line in lines)
+            for (int i = 0; i < lines.Length; i++)
             {
+                var line = lines[i];
+
                 var sample = line
                     .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => double.Parse(s.Trim(), CultureInfo.InvariantCulture))
                     .ToList();
 
+                if (sample.Count > 100)
+                {
+                    throw new InvalidOperationException($"Выборка {i + 1} превышает допустимое количетсво элементов. Текущее — {sample.Count}, максимальное допустимое — 100.");
+                }
+
                 samples.Add(sample);
             }
+
             return samples;
         }
     }

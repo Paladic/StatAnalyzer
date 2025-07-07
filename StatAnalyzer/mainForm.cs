@@ -34,29 +34,39 @@ namespace StatAnalyzer
                 if (res == DialogResult.No) return;
             }
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "CSV файлы (*.csv)|*.csv|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
-            openFileDialog.Title = "Выберите файл с данными";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string filePath = openFileDialog.FileName;
-                string[] strings = File.ReadAllLines(filePath);
-                if (!SampleCSVParser.isSamplesValid(strings)) return;
-                var newSamples = SampleCSVParser.TextToSamples(strings);
-                Samples.ClearSamples();
-                Samples.AllSamples = newSamples;
-                newSampleForm();
+                OpenFileDialog openFileDialog = new OpenFileDialog();
 
-                InterfaceHelper.SamplesToGrid(selectionsDataGrid, Samples.AllSamples);
+                openFileDialog.Filter = "CSV файлы (*.csv)|*.csv|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+                openFileDialog.Title = "Выберите файл с данными";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+                    string[] strings = File.ReadAllLines(filePath);
+                    if (!SampleCSVParser.isSamplesValid(strings)) return;
+                    var newSamples = SampleCSVParser.TextToSamples(strings);
+                    Samples.ClearSamples();
+                    Samples.AllSamples = newSamples;
+                    newSampleForm();
+
+                    InterfaceHelper.SamplesToGrid(selectionsDataGrid, Samples.AllSamples);
+                }
             }
-            //else MessageBox.Show("Произошла ошибка при открытии файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Ошибка разбора значений.\nВведите числовые значения.\nИспользуйте точку для написания десятичных дробей и точку с запятой как разделитель.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void keyboardInput_Click(object sender, EventArgs e)
         {
-            if(Samples.AllSamples.Count != 0)
+            if (Samples.AllSamples.Count != 0)
             {
                 DialogResult res = MessageBox.Show("Текущие данные будут стерты и перезаписаны новыми.\nПродолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.No) return;

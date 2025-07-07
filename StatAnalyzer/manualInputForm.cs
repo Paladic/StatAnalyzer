@@ -36,11 +36,14 @@ namespace StatAnalyzer
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (FormatException)
             {
                 MessageBox.Show("Ошибка разбора значений.\nВведите числовые значения.\nИспользуйте точку для написания десятичных дробей и точку с запятой как разделитель.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }
