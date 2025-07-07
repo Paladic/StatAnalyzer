@@ -62,7 +62,7 @@ namespace StatAnalyzer
             int maxSize = Samples.AllSamples.Max(s => s.Count);
 
             if (maxSize < 30 && minSize < 30) return SamplesSize.SmallSamples;
-            else if (maxSize > 30 && minSize > 30) return SamplesSize.LargeSamples;
+            else if (maxSize >= 30 && minSize >= 30) return SamplesSize.LargeSamples;
             else return SamplesSize.DifferentSamples;
         }
 
