@@ -56,9 +56,6 @@ namespace StatAnalyzer
             var n1 = a.Count;
             var n2 = b.Count;
 
-            if (n1 == 0 || n2 == 0)
-                throw new ArgumentException("Обе выборки должны быть непустыми.");
-
             // Объединяем значения с метками группы
             var all = a.Select(v => (value: v, group: 0))
                        .Concat(b.Select(v => (value: v, group: 1)))
