@@ -19,8 +19,8 @@ namespace StatAnalyzer
 
         public enum StatisticalTest
         {
-            // для двух выборок
             None,
+            // для двух выборок
             PairedTTest,             // Парный t-тест
             Wilcoxon,                // Тест Вилкоксона
             StudentTTest,            // Классический t-тест Стьюдента

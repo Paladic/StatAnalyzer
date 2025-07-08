@@ -1,3 +1,4 @@
+using ScottPlot;
 using static System.Windows.Forms.LinkLabel;
 
 namespace StatAnalyzer
@@ -100,6 +101,12 @@ namespace StatAnalyzer
             resultsTextBox.Enabled = true;
             SamplesAnalyzer.AnalyzeSamples();
             resultsTextBox.AppendText(InterfaceHelper.BuildAnalysisSummary());
+        }
+
+        private void graphicsButton_Click(object sender, EventArgs e)
+        {
+            var form = new plotForm();
+            form.Show();
         }
     }
 }

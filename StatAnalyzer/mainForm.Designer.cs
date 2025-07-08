@@ -248,6 +248,7 @@
             graphicsButton.TabIndex = 0;
             graphicsButton.Text = "Показать график";
             graphicsButton.UseVisualStyleBackColor = true;
+            graphicsButton.Click += graphicsButton_Click;
             // 
             // resultsTextBox
             // 
