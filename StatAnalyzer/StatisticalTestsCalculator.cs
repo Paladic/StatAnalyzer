@@ -48,15 +48,81 @@ namespace StatAnalyzer
 
             return test.PValue;
         }
-
         public static double CalMannWhitneyTest(List<List<double>> samples)
         {
-            double[] a = samples[0].ToArray();
-            double[] b = samples[1].ToArray();
+            var a = samples[0];
+            var b = samples[1];
 
-            var test = new MannWhitneyWilcoxonTest(a, b, TwoSampleHypothesis.ValuesAreDifferent);
+            var n1 = a.Count;
+            var n2 = b.Count;
 
-            return test.PValue;
+            if (n1 == 0 || n2 == 0)
+                throw new ArgumentException("Обе выборки должны быть непустыми.");
+
+            // Объединяем значения с метками группы
+            var all = a.Select(v => (value: v, group: 0))
+                       .Concat(b.Select(v => (value: v, group: 1)))
+                       .OrderBy(t => t.value)
+                       .ToList();
+
+            // Назначаем ранги с учётом одинаковых значений
+            var ranks = new double[n1 + n2];
+            int i = 0;
+            while (i < all.Count)
+            {
+                int j = i + 1;
+                while (j < all.Count && all[j].value == all[i].value)
+                    j++;
+
+                double avgRank = (i + j + 1) / 2.0; // ранги начинаются с 1
+                for (int k = i; k < j; k++)
+                    ranks[k] = avgRank;
+
+                i = j;
+            }
+
+            // Сумма рангов для первой группы
+            double rankSumA = 0;
+            for (int k = 0; k < all.Count; k++)
+            {
+                if (all[k].group == 0)
+                    rankSumA += ranks[k];
+            }
+
+            // U-статистики
+            double u1 = rankSumA - n1 * (n1 + 1) / 2.0;
+            double u2 = n1 * n2 - u1;
+            double u = Math.Min(u1, u2);
+
+            // Аппроксимация p-value через нормальное распределение
+            double meanU = n1 * n2 / 2.0;
+            double stdU = Math.Sqrt(n1 * n2 * (n1 + n2 + 1) / 12.0);
+            double z = (u - meanU) / stdU;
+
+            // Двусторонний p-value
+            double pValue = 2.0 * NormalCdf(-Math.Abs(z));
+
+            return pValue;
+        }
+
+        // Стандартная нормальная функция распределения (через погрешность)
+        private static double NormalCdf(double x)
+        {
+            return 0.5 * (1.0 + Erf(x / Math.Sqrt(2)));
+        }
+
+        // Приближённая функция ошибок (erf)
+        private static double Erf(double x)
+        {
+            // численно стабильная аппроксимация (Абрамовиц и Стиган)
+            double t = 1.0 / (1.0 + 0.5 * Math.Abs(x));
+            double tau = t * Math.Exp(-x * x
+                - 1.26551223 + 1.00002368 * t + 0.37409196 * Math.Pow(t, 2)
+                + 0.09678418 * Math.Pow(t, 3) - 0.18628806 * Math.Pow(t, 4)
+                + 0.27886807 * Math.Pow(t, 5) - 1.13520398 * Math.Pow(t, 6)
+                + 1.48851587 * Math.Pow(t, 7) - 0.82215223 * Math.Pow(t, 8)
+                + 0.17087277 * Math.Pow(t, 9));
+            return x >= 0 ? 1.0 - tau : tau - 1.0;
         }
 
         public static double CalOneWayAnova(List<List<double>> samples)
