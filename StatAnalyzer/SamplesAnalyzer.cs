@@ -40,11 +40,11 @@ namespace StatAnalyzer
             if(Samples.IsSameSize) Samples.IsGaussian = AnalyzeSamplesDistribution();
 
             Samples.SampleSize = AnalyzeSize();
-            Samples.RecommendedTest = GetRecommendedTest();
 
             double levpVal = -1;
             Samples.IsEqualVariance = LeveneTestAccord(out levpVal);
             Samples.LevenePVal = levpVal;
+            Samples.RecommendedTest = GetRecommendedTest();
             Samples.TestPVal = CalculatePValue();
         }
         public static bool AnalyzeSamplesDistribution()
