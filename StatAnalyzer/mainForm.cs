@@ -49,7 +49,7 @@ namespace StatAnalyzer
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
 
-                openFileDialog.Filter = "CSV файлы (*.csv)|*.csv|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+                openFileDialog.Filter = "CSV файлы (*.csv)|*.csv";
                 openFileDialog.Title = "Выберите файл с данными";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
